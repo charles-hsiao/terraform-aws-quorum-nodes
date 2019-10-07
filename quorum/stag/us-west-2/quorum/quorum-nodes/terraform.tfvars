@@ -37,7 +37,7 @@ nodes_root_volume_size = "8"
 nodes_root_volume_iops = "100"
 
 # quorum-nodes-ct
-ct_ami_name = "quorum-ubuntu-1604-*"
+ct_ami_name = "ubuntu_1604_*"
 ct_instance_type = "t3.small"
 ct_root_volume_type = "gp2"
 ct_root_volume_size = "8"

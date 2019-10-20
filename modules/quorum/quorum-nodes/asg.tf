@@ -10,7 +10,7 @@ resource "aws_launch_configuration" "quorum-nodes" {
   key_name             = "${var.ssh_key}"
   ebs_optimized        = false
 
-  #associate_public_ip_address = true
+  associate_public_ip_address = true
 
   lifecycle {
     create_before_destroy = true

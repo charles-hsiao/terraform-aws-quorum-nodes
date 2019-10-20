@@ -31,14 +31,14 @@ quorum_ami_name = "quorum-ubuntu-1604-*"
 instance_min_size = 1
 instance_max_size = 1
 instance_desired_capacity = 1
-nodes_instance_type = "t3.small"
+nodes_instance_type = "t3.medium"
 nodes_root_volume_type = "gp2"
 nodes_root_volume_size = "8"
 nodes_root_volume_iops = "100"
 
 # quorum-nodes-ct
 ct_ami_name = "quorum-ct-ubuntu-1604-*"
-ct_instance_type = "t3.small"
+ct_instance_type = "t3.medium"
 ct_root_volume_type = "gp2"
 ct_root_volume_size = "8"
 ct_root_volume_iops = "100"

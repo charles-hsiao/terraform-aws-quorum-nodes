@@ -8,6 +8,7 @@ resource "aws_launch_configuration" "quorum-nodes" {
   instance_type        = "${var.nodes_instance_type}"
   security_groups      = ["${aws_security_group.quorum-nodes.id}"]
   key_name             = "${var.ssh_key}"
+  iam_instance_profile = "${aws_iam_instance_profile.ct.arn}"
   ebs_optimized        = false
 
   associate_public_ip_address = true

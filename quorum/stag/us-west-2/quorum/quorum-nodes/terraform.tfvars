@@ -46,7 +46,6 @@ ct_root_volume_iops = "100"
 extra_tags = {
   Project = "quorum"
   Environment = "stag"
-  Role = "quorum-nodes"
 }
 
 autoscaling_group_extra_tags = [

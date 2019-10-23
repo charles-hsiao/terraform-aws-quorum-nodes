@@ -20,11 +20,13 @@ resource "aws_instance" "quorum-nodes-ct" {
 
   tags = "${merge(map(
     "Name", "${var.environment}-${var.project}-${var.role}-ct",
+    "Role", "${var.role}-ct",
     "BuiltWith", "Terraform",
   ), var.extra_tags)}"
 
   volume_tags = "${merge(map(
     "Name", "${var.environment}-${var.project}-${var.role}-ct",
+    "Role", "${var.role}-ct",
     "BuiltWith", "Terraform",
   ), var.extra_tags)}"
 }

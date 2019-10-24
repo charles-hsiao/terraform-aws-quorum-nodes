@@ -109,6 +109,16 @@ resource "aws_security_group_rule" "ingress-quorum-nodes-tessera" {
   cidr_blocks = ["0.0.0.0/0"]
 }
 
+resource "aws_security_group_rule" "ingress-quorum-nodes-geth" {
+  type              = "ingress"
+  security_group_id = "${aws_security_group.quorum-nodes.id}"
+
+  from_port   = 21000
+  to_port     = 21100
+  protocol    = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
+}
+
 #resource "aws_security_group_rule" "ingress-quorum-nodes-peer-tcp" {
 #  type              = "ingress"
 #  security_group_id = "${aws_security_group.quorum-nodes.id}"

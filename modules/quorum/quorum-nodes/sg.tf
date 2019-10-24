@@ -99,32 +99,42 @@ resource "aws_security_group_rule" "ingress-quorum-nodes-node-exporter" {
   source_security_group_id = "${aws_security_group.quorum-nodes-ct.id}"
 }
 
-resource "aws_security_group_rule" "ingress-quorum-nodes-peer-tcp" {
+resource "aws_security_group_rule" "ingress-quorum-nodes-tessera" {
   type              = "ingress"
   security_group_id = "${aws_security_group.quorum-nodes.id}"
 
-  from_port   = 30301
-  to_port     = 30351
+  from_port   = 9001
+  to_port     = 9100
   protocol    = "tcp"
   cidr_blocks = ["0.0.0.0/0"]
 }
 
-resource "aws_security_group_rule" "ingress-quorum-nodes-peer-udp" {
-  type              = "ingress"
-  security_group_id = "${aws_security_group.quorum-nodes.id}"
+#resource "aws_security_group_rule" "ingress-quorum-nodes-peer-tcp" {
+#  type              = "ingress"
+#  security_group_id = "${aws_security_group.quorum-nodes.id}"
+#
+#  from_port   = 30301
+#  to_port     = 30351
+#  protocol    = "tcp"
+#  cidr_blocks = ["0.0.0.0/0"]
+#}
 
-  from_port   = 30301
-  to_port     = 30351
-  protocol    = "udp"
-  cidr_blocks = ["0.0.0.0/0"]
-}
+#resource "aws_security_group_rule" "ingress-quorum-nodes-peer-udp" {
+#  type              = "ingress"
+#  security_group_id = "${aws_security_group.quorum-nodes.id}"
+#
+#  from_port   = 30301
+#  to_port     = 30351
+#  protocol    = "udp"
+#  cidr_blocks = ["0.0.0.0/0"]
+#}
 
-resource "aws_security_group_rule" "ingress-quorum-nodes-rpc" {
-  type              = "ingress"
-  security_group_id = "${aws_security_group.quorum-nodes.id}"
-
-  from_port   = 8543
-  to_port     = 8593
-  protocol    = "tcp"
-  cidr_blocks = ["0.0.0.0/0"]
-}
+#resource "aws_security_group_rule" "ingress-quorum-nodes-rpc" {
+#  type              = "ingress"
+#  security_group_id = "${aws_security_group.quorum-nodes.id}"
+#
+#  from_port   = 8543
+#  to_port     = 8593
+#  protocol    = "tcp"
+#  cidr_blocks = ["0.0.0.0/0"]
+#}

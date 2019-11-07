@@ -109,6 +109,16 @@ resource "aws_security_group_rule" "ingress-quorum-node-block-exporter" {
   source_security_group_id = "${aws_security_group.quorum-nodes-ct.id}"
 }
 
+resource "aws_security_group_rule" "ingress-quorum-node-tessera-exporter" {
+  type              = "ingress"
+  security_group_id = "${aws_security_group.quorum-nodes.id}"
+
+  from_port   = 8001
+  to_port     = 8001
+  protocol    = "tcp"
+  source_security_group_id = "${aws_security_group.quorum-nodes-ct.id}"
+}
+
 resource "aws_security_group_rule" "ingress-quorum-nodes-tessera" {
   type              = "ingress"
   security_group_id = "${aws_security_group.quorum-nodes.id}"

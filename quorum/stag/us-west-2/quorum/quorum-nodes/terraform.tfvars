@@ -29,8 +29,8 @@ ssh_key = "ssh-quorum"
 # quorum-nodes
 quorum_ami_name = "quorum-ubuntu-1604-*"
 instance_min_size = 1
-instance_max_size = 1
-instance_desired_capacity = 1
+instance_max_size = 7
+instance_desired_capacity = 5
 nodes_instance_type = "t3.medium"
 nodes_root_volume_type = "gp2"
 nodes_root_volume_size = "8"

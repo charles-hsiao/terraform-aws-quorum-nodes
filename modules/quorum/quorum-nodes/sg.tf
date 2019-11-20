@@ -166,5 +166,5 @@ resource "aws_security_group_rule" "ingress-quorum-nodes-geth-rpc" {
   from_port   = 22000
   to_port     = 22000
   protocol    = "tcp"
-  cidr_blocks = ["0.0.0.0/0"]
+  source_security_group_id = "${aws_security_group.quorum-nodes-ct.id}"
 }

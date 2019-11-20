@@ -29,6 +29,16 @@ resource "aws_security_group_rule" "egress-quorum-nodes-ct" {
   cidr_blocks = ["0.0.0.0/0"]
 }
 
+resource "aws_security_group_rule" "ingress-quorum-nodes-ct-http" {
+  type              = "ingress"
+  security_group_id = "${aws_security_group.quorum-nodes-ct.id}"
+
+  from_port   = 80
+  to_port     = 80
+  protocol    = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
+}
+
 resource "aws_security_group_rule" "ingress-quorum-nodes-ct-ssh" {
   type              = "ingress"
   security_group_id = "${aws_security_group.quorum-nodes-ct.id}"

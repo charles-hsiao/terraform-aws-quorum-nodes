@@ -26,6 +26,14 @@ terragrunt = {
 role = "quorum-nodes"
 ssh_key = "ssh-quorum"
 
+# logstash
+logstash_instance_count = 0   # Enable=1; Disable=0
+logstash_ami_name = "logstash-ubuntu-1604-*"
+logstash_instance_type = "t3.medium"
+logstash_root_volume_type = "gp2"
+logstash_root_volume_size = "8"
+logstash_root_volume_iops = "100"
+
 # quorum-nodes
 quorum_ami_name = "quorum-ubuntu-1604-*"
 instance_min_size = 1

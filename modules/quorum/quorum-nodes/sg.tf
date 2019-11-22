@@ -11,6 +11,7 @@ data "aws_vpc" "quorum-vpc" {
 # EC2
 # logstash
 resource "aws_security_group" "logstash" {
+  count       = "${var.logstash_instance_count}"
   name_prefix = "${var.environment}-${var.project}-${var.role}-logstash-"
   vpc_id      = "${data.aws_vpc.quorum-vpc.id}"
 
@@ -21,6 +22,7 @@ resource "aws_security_group" "logstash" {
 }
 
 resource "aws_security_group_rule" "egress-logstash" {
+  count             = "${var.logstash_instance_count}"
   type              = "egress"
   security_group_id = "${aws_security_group.logstash.id}"
 
@@ -31,6 +33,7 @@ resource "aws_security_group_rule" "egress-logstash" {
 }
 
 resource "aws_security_group_rule" "ingress-logstash-ssh" {
+  count             = "${var.logstash_instance_count}"
   type              = "ingress"
   security_group_id = "${aws_security_group.logstash.id}"
 

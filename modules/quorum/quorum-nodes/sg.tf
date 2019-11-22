@@ -9,6 +9,38 @@ data "aws_vpc" "quorum-vpc" {
 }
 
 # EC2
+# logstash
+resource "aws_security_group" "logstash" {
+  name_prefix = "${var.environment}-${var.project}-${var.role}-logstash-"
+  vpc_id      = "${data.aws_vpc.quorum-vpc.id}"
+
+  tags = "${merge(map(
+      "Name", "${var.environment}-${var.project}-${var.role}-logstash",
+      "BuiltWith", "Terraform",
+    ), var.extra_tags)}"
+}
+
+resource "aws_security_group_rule" "egress-logstash" {
+  type              = "egress"
+  security_group_id = "${aws_security_group.logstash.id}"
+
+  from_port   = 0
+  to_port     = 0
+  protocol    = "-1"
+  cidr_blocks = ["0.0.0.0/0"]
+}
+
+resource "aws_security_group_rule" "ingress-logstash-ssh" {
+  type              = "ingress"
+  security_group_id = "${aws_security_group.logstash.id}"
+
+  from_port   = 22
+  to_port     = 22
+  protocol    = "tcp"
+  source_security_group_id = "${aws_security_group.logstash.id}"
+}
+
+# CT
 resource "aws_security_group" "quorum-nodes-ct" {
   name_prefix = "${var.environment}-${var.project}-${var.role}-ct-"
   vpc_id      = "${data.aws_vpc.quorum-vpc.id}"
@@ -59,6 +91,7 @@ resource "aws_security_group_rule" "ingress-quorum-nodes-ct-grafana" {
   cidr_blocks = ["0.0.0.0/0"]
 }
 
+# quorum nodes
 resource "aws_security_group" "quorum-nodes" {
   name_prefix = "${var.environment}-${var.project}-${var.role}-"
   vpc_id      = "${data.aws_vpc.quorum-vpc.id}"

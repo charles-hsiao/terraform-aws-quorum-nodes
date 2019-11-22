@@ -6,6 +6,14 @@ variable "project" {}
 variable "role" {}
 variable "ssh_key" {}
 
+# logstash
+variable "logstash_instance_count" {}
+variable "logstash_ami_name" {}
+variable "logstash_instance_type" {}
+variable "logstash_root_volume_type" {}
+variable "logstash_root_volume_size" {}
+variable "logstash_root_volume_iops" {}
+
 # quorum-nodes
 variable "quorum_ami_name" {}
 variable "instance_min_size" {}

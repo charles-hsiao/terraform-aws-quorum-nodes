@@ -33,7 +33,7 @@ resource "aws_instance" "quorum-nodes-ct" {
 
 data "aws_ami" "ami-quorum-nodes-ct" {
   most_recent = true
-  owners      = ["410617086991"]
+  owners      = ["${data.aws_caller_identity.current.account_id}"]
 
   filter {
     name   = "virtualization-type"
@@ -82,7 +82,7 @@ resource "aws_instance" "logstash" {
 
 data "aws_ami" "ami-logstash" {
   most_recent = true
-  owners      = ["410617086991"]
+  owners      = ["${data.aws_caller_identity.current.account_id}"]
 
   filter {
     name   = "virtualization-type"

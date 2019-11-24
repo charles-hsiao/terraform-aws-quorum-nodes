@@ -57,7 +57,7 @@ resource "aws_security_group_rule" "ingress-logstash-ssh" {
   from_port   = 22
   to_port     = 22
   protocol    = "tcp"
-  source_security_group_id = "${aws_security_group.logstash.id}"
+  source_security_group_id = "${aws_security_group.quorum-nodes-ct.id}"
 }
 
 # CT

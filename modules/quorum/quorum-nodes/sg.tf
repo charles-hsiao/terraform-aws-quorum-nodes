@@ -9,6 +9,23 @@ data "aws_vpc" "quorum-vpc" {
 }
 
 # EC2
+# Elasticsearch
+resource "aws_security_group" "es" {
+  count       = "${var.es_instance_count}"
+  name_prefix = "${var.environment}-${var.project}-${var.role}-es-"
+  vpc_id      = "${data.aws_vpc.quorum-vpc.id}"
+
+  ingress {
+    from_port = 443
+    to_port   = 443
+    protocol  = "tcp"
+
+    cidr_blocks = [
+      "${data.aws_vpc.quorum-vpc.cidr_block}",
+    ]
+  }
+}
+
 # logstash
 resource "aws_security_group" "logstash" {
   count       = "${var.logstash_instance_count}"

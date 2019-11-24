@@ -27,9 +27,12 @@ role = "quorum-nodes"
 ssh_key = "ssh-quorum"
 
 # elasticsearch
-es_instance_count = 0  # Elable=1; Disable=0
+es_instance_count = 1  # Elable=1; Disable=0
 es_domain = "es-quorum"
-es_instance_type = "t2.micro.elasticsearch"
+es_version = "6.3"
+es_instance_type = "t2.medium.elasticsearch"
+es_ebs_volume_size = 10
+es_ebs_volume_type = "gp2"
 
 # logstash
 logstash_instance_count = 0   # Enable=1; Disable=0
@@ -41,9 +44,9 @@ logstash_root_volume_iops = "100"
 
 # quorum-nodes
 quorum_ami_name = "quorum-ubuntu-1604-*"
-instance_min_size = 1
+instance_min_size = 0
 instance_max_size = 7
-instance_desired_capacity = 5
+instance_desired_capacity = 0
 nodes_instance_type = "t3.medium"
 nodes_root_volume_type = "gp2"
 nodes_root_volume_size = "8"
@@ -51,7 +54,7 @@ nodes_root_volume_iops = "100"
 
 # quorum-nodes-ct
 ct_ami_name = "quorum-ct-ubuntu-1604-*"
-ct_instance_type = "t3.large"
+ct_instance_type = "t3.medium"
 ct_root_volume_type = "gp2"
 ct_root_volume_size = "8"
 ct_root_volume_iops = "100"

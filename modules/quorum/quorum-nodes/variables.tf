@@ -6,6 +6,11 @@ variable "project" {}
 variable "role" {}
 variable "ssh_key" {}
 
+# elasticsearch
+variable "es_instance_count" {}
+variable "es_domain" {}
+variable "es_instance_type" {}
+
 # logstash
 variable "logstash_instance_count" {}
 variable "logstash_ami_name" {}

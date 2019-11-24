@@ -26,6 +26,11 @@ terragrunt = {
 role = "quorum-nodes"
 ssh_key = "ssh-quorum"
 
+# elasticsearch
+es_instance_count = 0  # Elable=1; Disable=0
+es_domain = "es-quorum"
+es_instance_type = "t2.micro.elasticsearch"
+
 # logstash
 logstash_instance_count = 0   # Enable=1; Disable=0
 logstash_ami_name = "logstash-ubuntu-1604-*"

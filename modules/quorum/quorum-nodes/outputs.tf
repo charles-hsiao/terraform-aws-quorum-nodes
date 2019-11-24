@@ -4,6 +4,12 @@ output "CT IP" {
   value       = "${aws_eip.quorum-nodes-ct.public_ip}"
 }
 
+# logstash
+output "logstash IP" {
+  description = "Logstash private IP"
+  value       = "${aws_instance.logstash.*.private_ip}"
+}
+
 # Elasticsearch
 output "ES endpoint" {
   description = "Domain-specific endpoint used to submit index, search, and data upload requests"

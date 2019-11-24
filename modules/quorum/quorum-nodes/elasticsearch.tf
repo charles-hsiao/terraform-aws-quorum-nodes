@@ -7,25 +7,25 @@ resource "aws_iam_service_linked_role" "es" {
 }
 
 resource "aws_elasticsearch_domain" "es" {
-  count                 = "${var.es_instance_count}" 
+  count                 = "${var.es_instance_count}"
   domain_name           = "${var.es_domain}"
-  elasticsearch_version = "6.3"
+  elasticsearch_version = "${var.es_version}"
+
+  depends_on = ["aws_iam_service_linked_role.es"]
 
   cluster_config {
-    instance_type = "${var.es_instance_type}"
+    instance_type            = "${var.es_instance_type}"
+    instance_count           = "${var.es_instance_count}"
+    dedicated_master_enabled = false
   }
 
-  vpc_options {
-    subnet_ids = ["${element(data.aws_subnet_ids.quorum-public.ids, count.index)}"]
-
-    security_group_ids = ["${aws_security_group.es.id}"]
+  ebs_options {
+    ebs_enabled = "${var.es_ebs_volume_size > 0 ? true : false}"
+    volume_size = "${var.es_ebs_volume_size}"
+    volume_type = "${var.es_ebs_volume_type}"
   }
 
-  advanced_options = {
-    "rest.action.multi.allow_explicit_index" = "true"
-  }
-
-  access_policies = <<CONFIG
+access_policies = <<CONFIG
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -44,8 +44,4 @@ CONFIG
     "Role", "elasticsearch",
     "BuiltWith", "Terraform",
   ), var.extra_tags)}"
-
-  depends_on = [
-    "aws_iam_service_linked_role.es",
-  ]
 }

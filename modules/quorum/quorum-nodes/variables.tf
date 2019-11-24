@@ -9,7 +9,10 @@ variable "ssh_key" {}
 # elasticsearch
 variable "es_instance_count" {}
 variable "es_domain" {}
+variable "es_version" {}
 variable "es_instance_type" {}
+variable "es_ebs_volume_size" {}
+variable "es_ebs_volume_type" {}
 
 # logstash
 variable "logstash_instance_count" {}

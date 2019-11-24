@@ -31,7 +31,7 @@ resource "aws_launch_configuration" "quorum-nodes" {
 
 data "aws_ami" "ami-quorum-nodes" {
   most_recent = true
-  owners      = ["410617086991"]
+  owners      = ["${data.aws_caller_identity.current.account_id}"]
 
   filter {
     name   = "virtualization-type"
@@ -90,5 +90,3 @@ data "aws_subnet_ids" "quorum-public" {
     SubnetType = "public"
   }
 }
-
-data "aws_availability_zones" "available" { }

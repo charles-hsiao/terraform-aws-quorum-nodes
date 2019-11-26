@@ -60,6 +60,16 @@ resource "aws_security_group_rule" "ingress-logstash-ssh" {
   source_security_group_id = "${aws_security_group.quorum-nodes-ct.id}"
 }
 
+resource "aws_security_group_rule" "ingress-logstash-filebeat" {
+  type              = "ingress"
+  security_group_id = "${aws_security_group.logstash.id}"
+
+  from_port   = 5044
+  to_port     = 5044
+  protocol    = "tcp"
+  source_security_group_id = "${aws_security_group.quorum-nodes.id}"
+}
+
 # CT
 resource "aws_security_group" "quorum-nodes-ct" {
   name_prefix = "${var.environment}-${var.project}-${var.role}-ct-"

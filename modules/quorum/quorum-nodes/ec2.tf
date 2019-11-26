@@ -61,6 +61,8 @@ resource "aws_instance" "logstash" {
   subnet_id              = "${element(data.aws_subnet_ids.quorum-public.ids, count.index)}"
   monitoring             = false
 
+  associate_public_ip_address = true
+
   root_block_device {
     volume_type = "${var.logstash_root_volume_type}"
     volume_size = "${var.logstash_root_volume_size}"

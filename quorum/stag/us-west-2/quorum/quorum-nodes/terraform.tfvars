@@ -35,7 +35,7 @@ es_ebs_volume_size = 10
 es_ebs_volume_type = "gp2"
 
 # logstash
-logstash_instance_count = 0   # Enable=1; Disable=0
+logstash_instance_count = 1   # Enable=1; Disable=0
 logstash_ami_name = "logstash-ubuntu-1604-*"
 logstash_instance_type = "t3.medium"
 logstash_root_volume_type = "gp2"
@@ -46,7 +46,7 @@ logstash_root_volume_iops = "100"
 quorum_ami_name = "quorum-ubuntu-1604-*"
 instance_min_size = 0
 instance_max_size = 7
-instance_desired_capacity = 0
+instance_desired_capacity = 1
 nodes_instance_type = "t3.medium"
 nodes_root_volume_type = "gp2"
 nodes_root_volume_size = "8"

@@ -61,6 +61,7 @@ resource "aws_security_group_rule" "ingress-logstash-ssh" {
 }
 
 resource "aws_security_group_rule" "ingress-logstash-filebeat" {
+  count             = "${var.logstash_instance_count}"
   type              = "ingress"
   security_group_id = "${aws_security_group.logstash.id}"
 
